@@ -27,7 +27,14 @@ public class PE03_Control_Salut {
             // aigua recomendada
         int water = 35;
         double waterml = 0;
-        double waterl =0;
+        double waterl = 0;
+
+        //cardiaca
+        int fc_max = 0;
+        int zonedown = 0;
+        int zoneup = 0;
+
+
         //Creacio scanner
         Scanner operacio = new Scanner(System.in);
 
@@ -43,14 +50,14 @@ public class PE03_Control_Salut {
                     // Introduir dades
 
                         //Introduir nom
-                    System.out.println("Put your name: ");
+                    System.out.println("Posa el teu nom: ");
                     name = operacio.nextLine();
                     if (name.isBlank()) { // esta vacio o solo son espacios
                         System.out.println("Error: Esta buit o nomes son espais");
                     } 
                     
                         //Introduir edat
-                    System.out.println("Put your age: ");
+                    System.out.println("Posa la teva edat: ");
                     try{
                         age = operacio.nextInt();
                         if (age < 0 || age > 120) {
@@ -61,7 +68,7 @@ public class PE03_Control_Salut {
                     }
 
                         //Introduir el teu pes
-                    System.out.println("Put your weight (kg): ");
+                    System.out.println("Posa el teu pes (kg): ");
                     try {
                         weight = operacio.nextDouble();
                         if (weight < 0 || weight > 400) {
@@ -73,7 +80,7 @@ public class PE03_Control_Salut {
                     }
 
                         //Introduir la teva alçada
-                    System.out.println("Put your height (m): ");
+                    System.out.println("Posa la teva alçada (m): ");
                     try {
                         height = operacio.nextDouble();
                         if (height < 0.5 || height > 2.5) {
@@ -95,7 +102,7 @@ public class PE03_Control_Salut {
                     switch (menu) {
                         case "a":
                                 //Introduir nom
-                            System.out.println("Put your name: ");
+                            System.out.println("Posa el teu nom: ");
                             name = operacio.nextLine();
                             if (name.isBlank()) { // esta vacio o solo son espacios
                                 System.out.println("Error: Esta buit o nomes son espais");
@@ -103,7 +110,7 @@ public class PE03_Control_Salut {
                             break;
                         case "b":
                                     //Introduir edat
-                            System.out.println("Put your age: ");
+                            System.out.println("Posa la teva edat: ");
                             try{
                                 age = operacio.nextInt();
                                 if (age < 0 || age > 120) {
@@ -116,9 +123,9 @@ public class PE03_Control_Salut {
                             break;
                         case "c":
                                 //Introduir el teu pes
-                            System.out.println("Put your weight (kg): ");
+                            System.out.println("Posa el teu pes (kg): ");
                             try {
-                                weight = operacio.nextInt();
+                                weight = operacio.nextDouble();
                                 if (weight < 0 || weight > 400) {
                                 System.out.println("Error: L'edat ha de ser un enter positiu ≤ 400.");
                                 } 
@@ -130,9 +137,9 @@ public class PE03_Control_Salut {
                             break;
                         case "d":
                                     //Introduir la teva alçada
-                            System.out.println("Put your weight (m): ");
+                            System.out.println("Posa la teva alçada (m): ");
                             try {
-                                height = operacio.nextInt();
+                                height = operacio.nextDouble();
                                 if (height < 0.5 || height > 2.5) {
                                 System.out.println("Error: L'alçada ha de ser un decimal positiu entre 0.5 i 2.5 metres");
                                 }   
@@ -147,6 +154,10 @@ public class PE03_Control_Salut {
                     }
                     break;
                 case "c":
+
+                    // name
+                    
+
                     // imc
                         // Mathf.pow "potencia"
                         imc = weight / (height* height);
@@ -171,12 +182,15 @@ public class PE03_Control_Salut {
                     int birtday = 2025 - age; 
                     
                     //cardiaca
-                    int fc_max = 220 - age;
+                    fc_max = 220 - age;
+                    zonedown = Math.round(fc_max * 0.50f);
+                    zoneup = Math.round(fc_max * 0.85f); 
 
                     // imprimir resultats per pantalla
                     System.out.println("El teu nom es: " + name);
                     System.out.println("El teu imc es:  " + imc);
                     System.out.println("Y el tipus es: " + imctype);
+                    System.out.println("Freqüència cardíaca màxima estimada: " + "La zona baixa ha de ser: " +  zonedown + " La zona alta ha de ser: " + zoneup);
                     System.out.println("Aigua recomendada al dia: " + waterl + " L");
                     System.out.println("El teu any de naixamente aproximat es: " + birtday);
                     break;
