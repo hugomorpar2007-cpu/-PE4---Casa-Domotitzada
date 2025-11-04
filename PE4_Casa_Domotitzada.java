@@ -35,8 +35,12 @@ public class PE4_Casa_Domotitzada {
     static boolean camarabany = false;
     static boolean camaracuina = false;
     static boolean camarapasadis = false;
+    
     // menu camara
     static String menucamaratot = "";
+
+    // Variable forn
+    static boolean estatforn = false;
 
     static Scanner exits = new Scanner(System.in);
 
@@ -64,6 +68,11 @@ public class PE4_Casa_Domotitzada {
         String menucamarahabitacio = "";
         String menucamaraonoff = "";
 
+        // menu forn
+        String menuforn = " ";
+        String menufornprogramat = "";
+        String menuforn_ences_apagat = "";
+
         String backmenumain = "Si";
         String backmenutemp = "Si";
 
@@ -78,7 +87,8 @@ public class PE4_Casa_Domotitzada {
             System.out.println("b) Obrir o tancar persianes");
             System.out.println("c) Llums");
             System.out.println("d) Càmeres");
-            System.out.println("e) Apagar");
+            System.out.println("e) Horno");
+            System.out.println("f) Apagar");
             menu = menus.next();
             switch (menu) {
                 case "a":
@@ -124,8 +134,9 @@ public class PE4_Casa_Domotitzada {
                                 break;
 
                             case "c":
-                                System.out.println("Decrease -1");
-                                System.out.println("Go back");
+                                System.out.println("b) Decrease -1");
+                                System.out.println("c) Go back");
+                                menutemperaturapujar = menus.next();
                                 switch (menutemperaturabaixar) {
                                     case "a":
                                         // Deacrease -1
@@ -154,11 +165,6 @@ public class PE4_Casa_Domotitzada {
                             case "e":
                                 // tornar enrere
                                 System.out.println("Back");
-                                try {
-                                    Thread.sleep(2000);
-                                } catch (Exception e) {
-
-                                }
                                 // backmenumain = "No";
                                 break;
 
@@ -647,7 +653,7 @@ public class PE4_Casa_Domotitzada {
                     break;
 
                 case "d":
-                // pujar el texto anterior 50 linies cap a dalt
+                    // pujar el texto anterior 50 linies cap a dalt
                     for (int i = 0; i < 50; ++i)
                         System.out.println();
                     System.out.println("Escull que opcio vols");
@@ -868,12 +874,50 @@ public class PE4_Casa_Domotitzada {
                             break;
                     }
                     break;
+                case "e":
+                    // pujar el texto anterior 50 linies cap a dalt
+                    for (int i = 0; i < 50; ++i)
+                        System.out.println();
+                    System.out.println("a) Encendrel o apagar");
+                    System.err.println("b) Mostar l'estat");
+                    System.out.println("c) Programar l'hora per encendrel o apagar");
+                    System.out.println("d) Temporitzador del temps restant");
+                    System.out.println("f) Tornar enrere");
+                        switch (menuforn) {
+                            case "a":
+                            System.out.println("a) Encendrel");
+                            System.out.println("b) Apagar");
+                                switch (menuforn_ences_apagat) {
+                                    case "a":
+                                        estatforn = true;
+                                        System.out.println("Forn ences");
+                                        break;
+                                    case "b":
+                                        estatforn = false;
+                                        System.out.println("Forn apagat");
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                break;
+                            case "b":
+                                mostrarestatforn();
+                                break;
+                            default:
+                                System.out.println("Error: Seleciona un caracter valid");
+                                break;
+                        }
+                    break;
 
+                case "f":
+                    System.out.println("Finalitzat");
+                    break;
+                
                 default:
                     System.out.println("Error: Seleciona un caracter valid");
                     break;
             }
-        } while (!menutemperatura.equals("e"));
+        } while (!menu.equals("f"));
     }
 
     public static void mostrarEstatClima() {
@@ -913,6 +957,11 @@ public class PE4_Casa_Domotitzada {
 
     public static void cortinestottancades() {
         System.out.println("Totes les cortines tancades");
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {
+
+        }
         cortinamenjador = true;
         cortinah2 = true;
         cortinah3 = true;
@@ -986,6 +1035,10 @@ public class PE4_Casa_Domotitzada {
         camarabany = true;
         camaracuina = true;
         camarapasadis = true;
+    }
+
+    public static void mostrarestatforn() {
+        System.out.println("La temperatura del forn es " + estatforn);
     }
 
 }
