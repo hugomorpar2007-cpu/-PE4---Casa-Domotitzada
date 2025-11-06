@@ -41,9 +41,11 @@ public class PE4_Casa_Domotitzada {
 
     // Variable forn
     static boolean estatforn = false;
+    static int temps = 0;
 
     static Scanner exits = new Scanner(System.in);
 
+    static Scanner menus = new Scanner(System.in);
     public static void main(String[] args) {
         String menu = " ";
 
@@ -76,7 +78,7 @@ public class PE4_Casa_Domotitzada {
         String backmenumain = "Si";
         String backmenutemp = "Si";
 
-        Scanner menus = new Scanner(System.in);
+        
 
         do {
             // pujar el texto anterior 50 linies cap a dalt
@@ -434,6 +436,9 @@ public class PE4_Casa_Domotitzada {
                     break;
 
                 case "c":
+                    // pujar el texto anterior 50 linies cap a dalt
+                    for (int i = 0; i < 50; ++i)
+                        System.out.println();
                     System.out.println("Escull que opcio vols");
                     System.out.println("a) Escollir habitacio");
                     System.out.println("b) Controlar totes les habitacions");
@@ -873,7 +878,7 @@ public class PE4_Casa_Domotitzada {
                             System.out.println("Error: Seleciona un caracter valid");
                             break;
                     }
-                    break;
+                break;
                 case "e":
                     // pujar el texto anterior 50 linies cap a dalt
                     for (int i = 0; i < 50; ++i)
@@ -881,27 +886,56 @@ public class PE4_Casa_Domotitzada {
                     System.out.println("a) Encendrel o apagar");
                     System.err.println("b) Mostar l'estat");
                     System.out.println("c) Programar l'hora per encendrel o apagar");
-                    System.out.println("d) Temporitzador del temps restant");
-                    System.out.println("f) Tornar enrere");
+                    System.out.println("e) Tornar enrere");
+                    menuforn = menus.next();
+                    System.out.println(menuforn);
                         switch (menuforn) {
                             case "a":
                             System.out.println("a) Encendrel");
                             System.out.println("b) Apagar");
+                            menuforn_ences_apagat = menus.next();
                                 switch (menuforn_ences_apagat) {
                                     case "a":
                                         estatforn = true;
                                         System.out.println("Forn ences");
+                                        try {
+                                            Thread.sleep(2000);
+                                        } catch (Exception e) {
+                                        }
                                         break;
                                     case "b":
                                         estatforn = false;
                                         System.out.println("Forn apagat");
+                                        try {
+                                            Thread.sleep(2000);
+                                        } catch (Exception e) {
+                                        }
                                         break;
                                     default:
+                                        System.out.println("Error: Seleciona un caracter valid");
                                         break;
                                 }
                                 break;
                             case "b":
                                 mostrarestatforn();
+                                break;
+                            case "c":
+                                    System.out.println("a) Encendrel");
+                                    System.out.println("b) Apagar");
+                                    menufornprogramat = menus.next();
+                                    switch (menufornprogramat) {
+                                        case "a":
+                                            ProgramarForn();
+                                            estatforn = true;
+                                            break;
+                                        case "b":
+                                            ProgramarForn();
+                                            estatforn = false;
+                                            break;
+                                        default:
+                                            System.out.println("Error: Seleciona un caracter valid");
+                                            break;
+                                    }
                                 break;
                             default:
                                 System.out.println("Error: Seleciona un caracter valid");
@@ -1039,6 +1073,24 @@ public class PE4_Casa_Domotitzada {
 
     public static void mostrarestatforn() {
         System.out.println("La temperatura del forn es " + estatforn);
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {
+        }
+    }
+
+    public static void ProgramarForn(){
+        System.out.println("Introduiex el minuts que vols programar el forn:");
+        temps = menus.nextInt();
+        int i = 0; 
+        for (i = temps; i > 0; i--){
+        System.out.println(i +" minut restant...");
+        try {
+            Thread.sleep(temps * 60000);
+        } catch (InterruptedException e) {
+            System.out.println("Error");
+        }
+        }
     }
 
 }
