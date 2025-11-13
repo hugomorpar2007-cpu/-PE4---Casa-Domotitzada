@@ -21,7 +21,7 @@ public class PE05_Comandes_restaurant {
         String nom = "";
         String producte = "";
         float preuunitat = 0;
-        int unitats = 0;
+        int quantitat = 0;
 
         String tiquet = "";
 
@@ -47,7 +47,6 @@ public class PE05_Comandes_restaurant {
                     System.out.println("______________________________________");
                     System.out.println("> Introdueix el nom del client:");
                     nom = insert.next();
-                    tiquet = tiquet + " - " + nom;
                     while (!opcioSeguir.equalsIgnoreCase("n")) {
 
                         System.out.println("> Introdueix el producte:");
@@ -55,8 +54,13 @@ public class PE05_Comandes_restaurant {
                         tiquet = tiquet + " - " + producte;
                         System.out.println("> Preu unitari (€):");
                         preuunitat = insert.nextFloat();
+                        tiquet = tiquet + " - " + preuunitat;
                         System.out.println("> Quantitat:");
-                        unitats = insert.nextInt();
+                        quantitat = insert.nextInt();
+                        tiquet = tiquet + " - " + quantitat;
+
+                        float subtotal = preuunitat * quantitat;
+                        tiquet = tiquet + " - " +subtotal;
 
                         tiquet = tiquet + "\n";
                         System.out.println("> Vols afegir un altre producte? (s/n):");
@@ -67,7 +71,7 @@ public class PE05_Comandes_restaurant {
                     System.out.println("=============== TIQUET ===============");
                     System.out.println("______________________________________");
                     System.out.println("Client: " + nom);
-                    System.out.println("Producte        Quantitat   Preu unit.   Subtotal");
+                    System.out.println("Producte     Preu unit.     Quantitat   Subtotal");
                     System.out.println("--------------------------------------------------");
                     System.out.println(tiquet);
                     System.out.println("--------------------------------------------------");
