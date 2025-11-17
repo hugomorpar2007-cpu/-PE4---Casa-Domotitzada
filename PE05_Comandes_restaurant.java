@@ -22,6 +22,9 @@ public class PE05_Comandes_restaurant {
         String producte = "";
         float preuunitat = 0;
         int quantitat = 0;
+        float totalsiniva=0;
+        double iva =0;
+        float total =0;
 
         String tiquet = "";
 
@@ -60,12 +63,17 @@ public class PE05_Comandes_restaurant {
                         tiquet = tiquet + " - " + quantitat;
 
                         float subtotal = preuunitat * quantitat;
-                        tiquet = tiquet + " - " +subtotal;
+                        tiquet = tiquet + " - " + subtotal;
+
+                        totalsiniva = totalsiniva + subtotal;
+                        iva = totalsiniva * 0.10;
 
                         tiquet = tiquet + "\n";
                         System.out.println("> Vols afegir un altre producte? (s/n):");
                         opcioSeguir = insert.next();
                     }
+                    
+
                     System.out.println("S’està generant el tiquet…");
                     System.out.println("______________________________________");
                     System.out.println("=============== TIQUET ===============");
@@ -75,9 +83,9 @@ public class PE05_Comandes_restaurant {
                     System.out.println("--------------------------------------------------");
                     System.out.println(tiquet);
                     System.out.println("--------------------------------------------------");
-                    System.out.println("Total sense IVA: ");
-                    System.out.println("IVA (10%): ");
-                    System.out.println("TOTAL A PAGAR: ");
+                    System.out.println("Total sense IVA: "+ totalsiniva);
+                    System.out.println("IVA (10%):  " + iva);
+                    System.out.println("TOTAL A PAGAR: "+ total);
                     System.out.println("==================================================");
                     try {
                         Thread.sleep(2000);
@@ -94,9 +102,9 @@ public class PE05_Comandes_restaurant {
                     System.out.println("Client: ");
                     System.out.println("Producte        Quantitat   Preu unit.   Subtotal");
                     System.out.println("--------------------------------------------------");
-                    // Tickets productes
+                    System.out.println(tiquet);
                     System.out.println("--------------------------------------------------");
-                    System.out.println("Total sense IVA:");
+                    System.out.println("Total sense IVA:"+ totalsiniva);
                     System.out.println("IVA (10%): ");
                     System.out.println("TOTAL A PAGAR: ");
                     System.out.println("==================================================");
