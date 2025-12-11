@@ -1,4 +1,4 @@
-package PE05;
+package PEO.PE05;
 
 import java.util.Scanner;
 
